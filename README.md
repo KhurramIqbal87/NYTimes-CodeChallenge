@@ -25,7 +25,7 @@ Uses concepts of the notorious Uncle Bob's architecture called [Clean Architectu
 ## Testing
 Currently written ViewModelType test case covered domain, data, presentation and Application module with moderate test coverage 
 
-## TODO
+## Additonal feature in app
 1. App Handle Internet Connectivity Error
 2. Pull to refresh Data
 3. Dark Mode Support
