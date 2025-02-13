@@ -8,9 +8,9 @@
 import Foundation
 
 final class ImageRepository: ImageRepositoryType {
-    private var apiClient: ApiClientType
+    var apiClient: ApiClientType
     
-    init(apiClient: ApiClientType) {
+    init(apiClient: ApiClientType = ApiClient.sharedInstance) {
         self.apiClient = apiClient
     }
     

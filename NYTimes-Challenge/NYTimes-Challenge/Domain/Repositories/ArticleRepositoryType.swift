@@ -10,5 +10,6 @@ import Combine
 
 //MARK: - Repository
 protocol ArticleRepositoryType {
+    var apiClient: ApiClientType { get }
     func getArticles(completion: @escaping (Result<[NYTimesArticle], APIError>) -> Void)
 }

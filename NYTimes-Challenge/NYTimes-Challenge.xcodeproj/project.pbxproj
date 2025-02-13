@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C31CED292D5E061900ECA1D0 /* NYTimesItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CED282D5E061900ECA1D0 /* NYTimesItemViewModelTests.swift */; };
 		ED79B84D2D5DBCFE00242712 /* NYTimesDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED79B84C2D5DBCFD00242712 /* NYTimesDetailViewModelTests.swift */; };
 		ED79B84F2D5DBDF200242712 /* MockImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED79B84E2D5DBDF200242712 /* MockImageRepository.swift */; };
 		ED79B8512D5DBE1900242712 /* MockArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED79B8502D5DBE1900242712 /* MockArticleRepository.swift */; };
@@ -83,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C31CED282D5E061900ECA1D0 /* NYTimesItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTimesItemViewModelTests.swift; sourceTree = "<group>"; };
 		ED79B84C2D5DBCFD00242712 /* NYTimesDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTimesDetailViewModelTests.swift; sourceTree = "<group>"; };
 		ED79B84E2D5DBDF200242712 /* MockImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageRepository.swift; sourceTree = "<group>"; };
 		ED79B8502D5DBE1900242712 /* MockArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArticleRepository.swift; sourceTree = "<group>"; };
@@ -170,6 +172,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED79B85B2D5E154E00242712 /* DetailController */ = {
+			isa = PBXGroup;
+			children = (
+				ED79B85D2D5E155C00242712 /* Views */,
+				ED79B85C2D5E155600242712 /* ViewModel */,
+			);
+			path = DetailController;
+			sourceTree = "<group>";
+		};
+		ED79B85C2D5E155600242712 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				ED93D7A02D5BCBA4001AA417 /* NYTimeArticlesDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		ED79B85D2D5E155C00242712 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ED850C392D5C8541000A1B47 /* NYTimesDetailViewController.swift */,
+				ED850C3A2D5C8541000A1B47 /* NYTimesDetailViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		ED850C302D5C62E3000A1B47 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				ED79B84C2D5DBCFD00242712 /* NYTimesDetailViewModelTests.swift */,
+				C31CED282D5E061900ECA1D0 /* NYTimesItemViewModelTests.swift */,
 				ED93D7512D5BCB2F001AA417 /* NYTimes_ChallengeTests.swift */,
 			);
 			path = "NYTimes-ChallengeTests";
@@ -438,6 +467,7 @@
 		ED93D79B2D5BCBA4001AA417 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				ED79B85B2D5E154E00242712 /* DetailController */,
 				ED93D79C2D5BCBA4001AA417 /* NYTimesArticles */,
 			);
 			path = Scene;
@@ -458,7 +488,6 @@
 			children = (
 				ED93D79E2D5BCBA4001AA417 /* NYTimeArticlesItemViewModel.swift */,
 				ED93D79F2D5BCBA4001AA417 /* NYTImesArticleViewModel.swift */,
-				ED93D7A02D5BCBA4001AA417 /* NYTimeArticlesDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -478,8 +507,6 @@
 				ED93D7A62D5BCBA4001AA417 /* ArticleTableViewCell.swift */,
 				ED93D7A72D5BCBA4001AA417 /* ArticleTableViewCell.xib */,
 				ED93D7CD2D5BDD40001AA417 /* NYTimesViewController.xib */,
-				ED850C392D5C8541000A1B47 /* NYTimesDetailViewController.swift */,
-				ED850C3A2D5C8541000A1B47 /* NYTimesDetailViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -673,6 +700,7 @@
 			files = (
 				ED93D7522D5BCB2F001AA417 /* NYTimes_ChallengeTests.swift in Sources */,
 				ED79B84D2D5DBCFE00242712 /* NYTimesDetailViewModelTests.swift in Sources */,
+				C31CED292D5E061900ECA1D0 /* NYTimesItemViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

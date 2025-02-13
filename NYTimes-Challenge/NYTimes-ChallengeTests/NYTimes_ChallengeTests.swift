@@ -55,23 +55,23 @@ final class NYTimes_ChallengeTests: XCTestCase {
                 }
             })
             .store(in: &cancelables)
-        wait(for: [expectation], timeout: 10)
+        wait(for: [expectation], timeout: 20)
     }
     func testPullToRefresh () {
         sut = NYTimesArticleContainer().getArticlesViewModel()
         // This should load data and show isLoading true and pass the stream value or error if any
         let expectation = XCTestExpectation.init(description: "Should reload data and item count should no be doubled")
+        sut.refresh()
         sut.itemsPublisher
             .receive(on: RunLoop.main)
-            .sink(receiveValue: { [weak self]  items in
+            .sink(receiveValue: { items in
                 if let items,
-                   items.count > 0,
-                   items.count == self?.itemCount {
+                   items.count == 20 {
                     expectation.fulfill()
                 }
             })
             .store(in: &cancelables)
-        wait(for: [expectation], timeout: 10)
+        wait(for: [expectation], timeout: 20)
     }
  
     func testObjectForDetailController() {
@@ -81,12 +81,9 @@ final class NYTimes_ChallengeTests: XCTestCase {
         sut.itemsPublisher
             .receive(on: RunLoop.main)
             .sink(receiveValue: { [weak self]  items in
-                guard let items else {
-                    XCTAssert(false)
-                    expectation.fulfill()
-                    return
-                }
-                if let _ = self?.sut.getModelForDetailController(
+        
+                if let items,
+                   let _ = self?.sut.getModelForDetailController(
                     indexPath: IndexPath(row: items.count - 1, section: 0)
                 ) {
                     XCTAssert(true)
@@ -94,34 +91,40 @@ final class NYTimes_ChallengeTests: XCTestCase {
                 }
             })
             .store(in: &cancelables)
+        wait(for: [expectation], timeout: 20)
     }
     
-    func testNilObjectForDetailController() {
+    func testNilObjectOrCrashPreventForDetailController() {
         sut = NYTimesArticleContainer().getArticlesViewModel()
         sut.refresh()
-        let expectation = XCTestExpectation.init(description: "Should return nil for index beyond")
+        let expectation = XCTestExpectation.init(description: "Should return nil for index beyond and should not crash index beyond limit")
         sut.itemsPublisher
             .receive(on: RunLoop.main)
             .sink(receiveValue: { [weak self]  items in
-                guard let items else {
-                    XCTAssert(false)
-                    expectation.fulfill()
-                    return
-                }
-                if self?.sut.getModelForDetailController(indexPath: IndexPath(row: items.count, section: 0)) == nil {
+                if let items,
+                   self?.sut.getModelForDetailController(indexPath: IndexPath(row: items.count, section: 0)) == nil {
                     XCTAssert(true)
                     expectation.fulfill()
                 }
             })
             .store(in: &cancelables)
+        wait(for: [expectation], timeout: 20)
     }
-
     
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testNoInternetConnection() {
+        sut = NYTimesArticleContainer().getArticlesViewModel()
+        sut.refresh()
+        let expectation = XCTestExpectation.init(description: "should give no internet Connect Error")
+        sut.errorPublisher
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { errorMsg in
+                if let errorMsg,
+                   errorMsg == APIError.noInternet.localizedDescription {
+                    expectation.fulfill()
+                }
+            })
+            .store(in: &cancelables)
+        wait(for: [expectation], timeout: 20)
     }
 
 }

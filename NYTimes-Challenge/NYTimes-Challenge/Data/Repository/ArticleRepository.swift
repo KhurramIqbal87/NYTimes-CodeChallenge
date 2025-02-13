@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 final class ArticleRepository: ArticleRepositoryType {
-    private var apiClient: ApiClientType
-    
-    init(apiClient: ApiClientType) {
+    var apiClient: ApiClientType
+
+    init(apiClient: ApiClientType = ApiClient.sharedInstance) {
         self.apiClient = apiClient
     }
    

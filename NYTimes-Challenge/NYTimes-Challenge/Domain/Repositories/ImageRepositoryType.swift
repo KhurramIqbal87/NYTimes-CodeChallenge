@@ -9,5 +9,7 @@ import Foundation
 import Combine
 
 protocol ImageRepositoryType {
+    var apiClient: ApiClientType { get }
+    
     func getImageForArticle(imageURL: String, completion:@escaping (Result<Data?, APIError>) -> Void)
 }

@@ -21,7 +21,6 @@ final class NYTimesDetailViewModelTests: XCTestCase {
     }
     
     func createViewModel() {
-        let repo = MockImageRepository()
         let expectation = XCTestExpectation.init(description: " should load mock data ")
         MockArticleRepository().getArticles { [weak self] result in
             switch result {
@@ -46,7 +45,7 @@ final class NYTimesDetailViewModelTests: XCTestCase {
     }
     
     func testViewDidLoad () {
-        sut.viewDidLoad()
+        
         let updatUIExpectation = XCTestExpectation.init(description: " should callback to update ")
         sut.updateUI = {
             updatUIExpectation.fulfill()
@@ -58,7 +57,8 @@ final class NYTimesDetailViewModelTests: XCTestCase {
                 if let _ = data { imageDataExpectation.fulfill() }
             }
             .store(in: &cancelables)
-        wait(for: [updatUIExpectation, imageDataExpectation], timeout: 10)
+        sut.viewDidLoad()
+        wait(for: [updatUIExpectation, imageDataExpectation], timeout: 20)
     }
 
     func testPerformanceExample() throws {

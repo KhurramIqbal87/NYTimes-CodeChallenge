@@ -9,7 +9,10 @@ import Foundation
 import Combine
 
 final class MockArticleRepository: ArticleRepositoryType {
-    
+    var apiClient: ApiClientType
+    init(apiClient: ApiClientType = ApiClient.sharedInstance) {
+        self.apiClient = apiClient
+    }
    func getArticles(completion: @escaping (Result<[NYTimesArticle], APIError>) -> Void) {
        completion(.success(getNytimeArticles()))
     }

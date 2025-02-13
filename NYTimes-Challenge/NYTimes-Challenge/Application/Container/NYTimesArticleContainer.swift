@@ -30,4 +30,8 @@ struct NYTimesArticleContainer {
     func getTableViewAdapter() -> ArtilesTableViewAdapter<ArticleTableViewCell, NYTimeArticlesItemViewModel> {
          ArtilesTableViewAdapter<ArticleTableViewCell, NYTimeArticlesItemViewModel>(data: [[]], tableView: nil)
     }
+    
+    func getMockRepoArticlesViewModel() -> NYTImesArticleViewModel{
+        NYTImesArticleViewModel(repository: MockArticleRepository())
+    }
 }
